@@ -10,19 +10,19 @@ public class PlanetListener implements MouseListener, MouseMotionListener{
     private Planet start, end;
     private boolean pressed;
     private PlanetPanel planetPanel;
+    private GameEngine engine;
 
-    public PlanetListener(PlanetPanel planetPanel) {
+    public PlanetListener(GameEngine engine, PlanetPanel planetPanel) {
+        this.engine = engine;
         this.planetPanel = planetPanel;
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
     }
 
     @Override
@@ -40,7 +40,6 @@ public class PlanetListener implements MouseListener, MouseMotionListener{
                 start = planet;
             }
         }
-
     }
 
     @Override
@@ -50,23 +49,22 @@ public class PlanetListener implements MouseListener, MouseMotionListener{
                     Math.pow(e.getY()-(int) planet.getY(),2) <= planet.getRadius()*planet.getRadius()){
                 end = planet;
                 if(!planet.equals(start) && start!=null){
-                    start.sendFleet((int)(start.numShips * 0.5), end);
+                    engine.startMove((int) (start.numShips * 0.5), start, end);
                     planetPanel.setCursor(Cursor.getDefaultCursor());
+                    start = null;
+                    end = null;
                     return;
                 }
             }
         }
         planetPanel.setCursor (Cursor.getDefaultCursor());
-
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
     }
 }

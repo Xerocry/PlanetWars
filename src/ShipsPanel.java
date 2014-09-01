@@ -1,19 +1,30 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Андрей2 on 26.08.14.
  */
 public class ShipsPanel extends JPanel {
-    private ArrayList<Ship> fleet;
+    private int count = 0;
+    private ConcurrentHashMap<Integer, Ship> fleet = new ConcurrentHashMap<Integer, Ship>();
 
-    public ShipsPanel() {
-        fleet = new ArrayList<Ship>(null);
+    public void addShip(Ship ship) {
+        fleet.put(count++, ship);
+        System.out.println(fleet.size());
     }
 
-    public ShipsPanel(int numShips) {
-       fleet = new ArrayList<Ship>(numShips);
+    public int getAmount() {
+        return fleet.size();
+    }
+
+    public void deleteShips() {
+        for( Map.Entry<Integer, Ship> entry : fleet.entrySet()) {
+            if(entry.getValue().isArrived()){
+                fleet.remove(entry.getKey());
+            }
+        }
     }
 
     @Override
@@ -29,9 +40,11 @@ public class ShipsPanel extends JPanel {
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
 
-        for (Ship sheep : fleet) {
-            g2d.setColor(Color.green);
-
+        int count = 0;
+        for( Map.Entry<Integer, Ship> entry : fleet.entrySet()){
+//            System.out.println(count++ + " " + entry.getValue().getX() + " " + entry.getValue().getY());
+            g2d.setColor(Color.red);
+            g2d.fillOval((int) entry.getValue().getX() - 5, (int) entry.getValue().getY()- 5, 10, 10);
 //            Point p1 = new Point (size.width / 3, (2 * size.height) / 3);
 //            Point p2 = new Point(size.width / 2, size.height / 3);
 //            Point p3 = new Point((2 * size.width) / 3, (2 * size.height) / 3);

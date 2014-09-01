@@ -8,11 +8,27 @@ import java.util.ArrayList;
 public class PlanetPanel extends JPanel {
     private ArrayList<Planet> planets = new ArrayList<Planet>();
 
+//    public PlanetPanel(int numPlanets) {
+//        double x,y;
+//        int rad;
+//        for (int i = 0; i < numPlanets; i++) {
+//            rad = (int)(Math.random()*50);
+//            while(Math)
+//            x = (int)(Math.random() * 500);
+//
+//
+//            planets.add(new Planet((int)(Math.random()*50), 300, 150, 50, new Color((float) Math.random(),
+//                    (float) Math.random(),
+//                    (float) Math.random())));
+//
+//        }
+//    }
+
     public PlanetPanel() {
-        planets.add(new Planet((int)(Math.random()*50), 300, 150, 50, new Color((float) Math.random(),
+        planets.add(new Planet((int)(Math.random()*50), 80, 100, 50, new Color((float) Math.random(),
                 (float) Math.random(),
                 (float) Math.random())));
-        planets.add(new Planet((int)(Math.random()*50), 200, 350, 60, new Color((float) Math.random(),
+        planets.add(new Planet((int)(Math.random()*50), 350, 350, 60, new Color((float) Math.random(),
                 (float) Math.random(),
                 (float) Math.random())));
     }

@@ -11,6 +11,11 @@ public class Planet extends SpaceObject {
 //    private int owner;
 //    private int growthRate;
 
+
+    public void setNumShips(int numShips) {
+        this.numShips = numShips;
+    }
+
     public Color getColor() {
         return color;
     }
@@ -20,20 +25,7 @@ public class Planet extends SpaceObject {
     }
 
     public void sendFleet(int numSent, Planet target){
-            if(numSent > numShips)
-            {
-                numSent = numShips - 1;
-            }
-            if (numSent > 0)
-            {
-                for (int i = 0; i < numSent; i++) {
-                    Ship ship = new Ship(target);
-                }
 
-                this.numShips -= numSent;
-                target.numShips += numSent;
-                System.out.println(numSent + "lost");
-            }
     }
 
     public Planet(
