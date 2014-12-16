@@ -3,6 +3,8 @@ import java.awt.*;
 /**
  * Created by Андрей2 on 26.08.14.
  */
+
+//test
 public class Planet extends SpaceObject {
     private int radius;
     private Color color;
